@@ -14,6 +14,7 @@
     mode=0644
   become: yes
   with_dict: "{{ postfix_virtual_maps }}"
+  notify: restart postfix
   register: task_virtual_files
 
 - name: virtual_maps | update postfix lookup table
