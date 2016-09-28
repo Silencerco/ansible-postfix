@@ -1,20 +1,23 @@
 ---
-dependencies: []
+# file: postfix/meta/main.yml
+#
+# meta file
+#
 
 galaxy_info:
-  author: openapphack
-  description: Postfix for Debian/Ubuntu.
-  company: ""
-  license: "license (BSD, MIT)"
-  min_ansible_version: 1.4
+  author: Pedro Salgado.
+  description: Ansible role to install and setup postfix.
+  company: ansiblebit.org
+  license: BSD
+  min_ansible_version: 2.0
   platforms:
-  - name: Debian
-    versions:
-    - all
-  - name: Ubuntu
-    versions:
-    - all
-  categories:
+    - name: Ubuntu
+      versions:
+        - xenial
+        - trusty
+        - precise
+  galaxy_tags:
     - networking
     - system
     - mail
+dependencies: []
