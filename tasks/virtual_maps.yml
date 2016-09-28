@@ -1,0 +1,23 @@
+---
+# file: postfix/tasks/virtual_maps.yml
+#
+# Tasks to setup postfix virtual maps.
+#
+
+- name: virtual_maps | create virtual files
+  copy:
+    dest="{{ postfix_dir_config }}/{{ item.key }}.cf"
+    content="{{ item.value }}"
+    backup=yes
+    owner=root
+    group=root
+    mode=0644
+  become: yes
+  with_dict: "{{ postfix_virtual_maps }}"
+  register: task_virtual_files
+
+- name: virtual_maps | update postfix lookup table
+  shell: "postmap {{ postfix_dir_config }}/{{ item.key }}.cf"
+  become: yes
+  with_dict: "{{ postfix_virtual_maps }}"
+  when: task_virtual_files.changed
