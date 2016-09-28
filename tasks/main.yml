@@ -1,7 +1,16 @@
 ---
+# file: postfix/tasks/main.yml
+#
+# tasks file
+#
+
 - name: Ensure postfix is installed (Debian).
   apt: pkg=postfix state=installed
   when: ansible_os_family == 'Debian'
 
 - name: Ensure postfix is started and enabled at boot.
   service: name=postfix state=started enabled=yes
+
+- include: virtual_maps.yml
+  when: postfix_virtual_maps is defined
+  tags: [ configuration, virtual, maps ]
