@@ -1,1 +1,7 @@
 ---
+# file: postfix/defaults/main.yml
+#
+# defaults file.
+#
+
+postfix_dir_config: /etc/postfix
